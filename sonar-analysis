@@ -1,5 +1,5 @@
 sonar.login=admin
-    D sonar.password=admin
+    D sonar.password=Devops@123
       sonar.projectBaseDir=/var/lib/jenkins/workspace/jenkins-sonar/
         sonar.projectKey=sonarqubetest1
         sonar.projectName=project
@@ -8,4 +8,4 @@ sonar.login=admin
         sonar.sources=/var/lib/jenkins/workspace/jenkins-sonar/project/src/main
         sonar.tests=/var/lib/jenkins/workspace/jenkins-sonar/project/src/test
         sonar.exclusions=vendor/**,resources/**,**/*.java
-        sonar.host.url=http://18.117.11.83:9000/
+        sonar.host.url=http://192.168.100.52:9000/
