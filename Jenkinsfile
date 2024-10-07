@@ -10,14 +10,14 @@ node {
             ${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectVersion=1.0-SNAPSHOT \
             -Dsonar.login=admin \
-            -Dsonar.password=Devops@123 \
+            -Dsonar.password=Admin@123 \
             -Dsonar.projectBaseDir=/var/lib/jenkins/workspace/SonarQube-Test/ \
             -Dsonar.projectKey=my-app \
             -Dsonar.sourceEncoding=UTF-8 \
             -Dsonar.language=java \
             -Dsonar.sources=my-app/src/main \
             -Dsonar.tests=my-app/src/test \
-            -Dsonar.host.url=http://192.168.100.52:9000/
+            -Dsonar.host.url=http://172.31.34.52:9000/
             """
         }
     }
