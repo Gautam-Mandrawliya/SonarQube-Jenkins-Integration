@@ -15,8 +15,8 @@ node {
             -Dsonar.projectKey=my-app \
             -Dsonar.sourceEncoding=UTF-8 \
             -Dsonar.language=java \
-            -Dsonar.sources=my-app/src/main \
-            -Dsonar.tests=my-app/src/test \
+            -Dsonar.sources=src/main/java \
+            -Dsonar.tests=src/test/java \
             -Dsonar.host.url=http://172.31.34.52:9000/
             """
         }
