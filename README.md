@@ -19,7 +19,7 @@ Before you begin, ensure you have the following installed on your machine:
 1. Create Build using "pom.xml.bkp" and "sonar-project.properties":
 
    ```bash
-   mvn clean install
+   mvn clean install -f pom.xml.bkp
 
    sonar-scanner \
    -Dsonar.projectKey=Test-App \
