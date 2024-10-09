@@ -12,7 +12,7 @@ Before you begin, ensure you have the following installed on your machine:
 - [SonarQube](https://www.sonarqube.org/downloads/)
 - [SonarScanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
 - Apache Maven
-- Jenkins
+- Jenkins for Pipeline ("pom.xml", and "Jenkinsfile")
 
 ## Test-App for Manual Testing
 
@@ -28,6 +28,8 @@ Before you begin, ensure you have the following installed on your machine:
    -Dsonar.java.binaries=target/classes \
    -Dsonar.host.url=http://13.201.119.10:9000 \
    -Dsonar.login=squ_1c7e965b714e9bb1ed601e6be5ed8d4a2aee94ea
+
+Where as
 
 -Dsonar.projectKey=Test-App: This sets the project key in SonarQube. It should be unique to your project.
 
