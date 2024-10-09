@@ -1,28 +1,26 @@
 # SonarQube-Jenkins-Integration
 
-# Test-App for Manual Testing
-
 ## Overview
 
-Test-App is a Java application designed to demonstrate code quality analysis using SonarQube.
+Java application designed to demonstrate code quality analysis using SonarQube.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed on your machine:
 
 - Java (version 11 or higher)
-- [SonarQube](https://www.sonarqube.org/downloads/) server running
-- [SonarScanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/) installed
+- [SonarQube](https://www.sonarqube.org/downloads/)
+- [SonarScanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
 - Apache Maven
+- Jenkins
 
-## Getting Started
+## Test-App for Manual Testing
 
 1. Create Build using "pom.xml.bkp" and "sonar-project.properties":
 
    ```bash
    mvn clean install
 
-   ```bash
    sonar-scanner \
    -Dsonar.projectKey=Test-App \
    -Dsonar.sources=src/main/java \
