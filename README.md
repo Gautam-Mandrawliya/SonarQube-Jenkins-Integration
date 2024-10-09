@@ -1,6 +1,7 @@
 # SonarQube-Jenkins-Integration
 
 ## Manual Testing using "pom.xml.bkp" and "sonar-project.properties"
+```bash
 sonar-scanner \
 -Dsonar.projectKey=Test-App \
 -Dsonar.sources=src/main/java \
