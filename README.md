@@ -21,11 +21,16 @@ Before you begin, ensure you have the following installed on your machine:
 
    ```bash
    mvn clean install
-   
-  sonar-scanner \
+   sonar-scanner \
   -Dsonar.projectKey=Test-App \
   -Dsonar.sources=src/main/java \
   -Dsonar.tests=src/test/java \
   -Dsonar.java.binaries=target/classes \
   -Dsonar.host.url=http://13.201.119.10:9000 \
   -Dsonar.login=squ_1c7e965b714e9bb1ed601e6be5ed8d4a2aee94ea
+   
+where Dsonar.sources=src/main/java is java code directory
+Dsonar.tests=src/test/java is test cases like JUnit etc.
+Dsonar.java.binaries=target/classes is Maven build
+Dsonar.host.url=http://13.201.119.10:9000 is SonarQube Server
+Dsonar.login=squ_1c7e965b714e9bb1ed601e6be5ed8d4a2aee94ea is SonarQube Token
