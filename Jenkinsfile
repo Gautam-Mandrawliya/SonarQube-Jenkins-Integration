@@ -29,7 +29,10 @@ node {
 	
 	// Generate CSV report using SonarQube API
     stage('Generate SonarQube Report') {
-        sh 'python3 generate_sonar_report.py'  // This script will generate sonarqube_report.csv
+        sh '''
+			pip3 install requests
+			python3 generate_sonar_report.py
+		'''
     }
     
     // Archive the report as a build artifact
