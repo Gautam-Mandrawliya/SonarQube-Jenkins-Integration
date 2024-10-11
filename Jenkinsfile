@@ -1,3 +1,5 @@
+import groovy.json.JsonSlurper
+
 node {
     stage('Cloning from GIT') {
         git branch: 'main', credentialsId: 'GITHUB_CREDS', url: 'https://github.com/Gautam-Mandrawliya/SonarQube-Jenkins-Integration.git'
@@ -15,7 +17,7 @@ node {
             ${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectVersion=1.0-SNAPSHOT \
             -Dsonar.login=squ_1c7e965b714e9bb1ed601e6be5ed8d4a2aee94ea \
-            -Dsonar.projectBaseDir=/var/lib/jenkins/workspace/Sonar-Pipeline/ \
+            -Dsonar.projectBaseDir=${env.WORKSPACE} \
             -Dsonar.projectKey=my-app \
             -Dsonar.sourceEncoding=UTF-8 \
             -Dsonar.language=java \
@@ -26,19 +28,29 @@ node {
             """
         }
     }
-	
-	// Generate CSV report using SonarQube API
-    stage('Generate SonarQube Report') {
-        sh '''
-	#		pip3 install requests urllib3<2.0
-	#		pip3 install requests
-			python3 generate_sonar_report.py
-		'''
-    }
     
-    // Archive the report as a build artifact
-    stage('Archive Report') {
-        archiveArtifacts artifacts: 'sonarqube_report.csv'
+    stage('Fetch SonarQube Report') {
+        script {
+            def sonarHost = "http://172.31.34.52:9000"
+            def projectKey = "my-app"
+            def authToken = "squ_1c7e965b714e9bb1ed601e6be5ed8d4a2aee94ea"
+
+            def sonarUrl = "${sonarHost}/api/issues/search?componentKeys=${projectKey}&resolved=false"
+            def sonarResponse = new URL(sonarUrl).getText(requestProperties: ['Authorization': "Basic ${authToken.bytes.encodeBase64().toString()}"])
+            def json = new JsonSlurper().parseText(sonarResponse)
+
+            // Write data to CSV file
+            def reportFile = new File("${env.WORKSPACE}/sonarqube_report.csv")
+            reportFile.withWriter { writer ->
+                writer.writeLine("Issue Key, Severity, Type, Message, Line")
+                
+                json.issues.each { issue ->
+                    writer.writeLine("${issue.key}, ${issue.severity}, ${issue.type}, ${issue.message}, ${issue.line}")
+                }
+            }
+
+            // Archive the report for future reference
+            archiveArtifacts artifacts: 'sonarqube_report.csv', fingerprint: true
+        }
     }
 }
-
