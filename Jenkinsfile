@@ -18,7 +18,6 @@ node {
             -Dsonar.password=Admin@123 \
             -Dsonar.projectBaseDir=${env.WORKSPACE} \
             -Dsonar.projectKey=my-app \
-			-Dsonar.projectName=My-App Project\
             -Dsonar.sourceEncoding=UTF-8 \
             -Dsonar.language=java \
             -Dsonar.sources=src/main/java \
