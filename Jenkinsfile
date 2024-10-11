@@ -2,10 +2,12 @@ node {
     stage('Cloning from GIT') {
         git branch: 'main', credentialsId: 'GITHUB_CREDS', url: 'https://github.com/Gautam-Mandrawliya/SonarQube-Jenkins-Integration.git'
     }
-	
-	stage('Build'){
-			sh "/opt/maven/bin/mvn clean install"
-	}
+    
+    stage('Build') {
+        def mvnHome = tool 'Maven'  
+        sh "${mvnHome}/bin/mvn clean install"
+    }
+    
     stage('SonarQube Analysis') {
         def scannerHome = tool 'SonarQube'
         withSonarQubeEnv('SonarQube') {
@@ -25,3 +27,4 @@ node {
         }
     }
 }
+
