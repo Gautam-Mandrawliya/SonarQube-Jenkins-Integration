@@ -30,7 +30,8 @@ node {
 	// Generate CSV report using SonarQube API
     stage('Generate SonarQube Report') {
         sh '''
-			pip3 install requests
+			pip3 install requests urllib3<2.0
+	#		pip3 install requests
 			python3 generate_sonar_report.py
 		'''
     }
