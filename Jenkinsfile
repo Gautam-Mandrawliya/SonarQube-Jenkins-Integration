@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import java.util.Base64
 
 node {
     stage('Cloning from GIT') {
@@ -35,8 +36,11 @@ node {
             def projectKey = "my-app"
             def authToken = "squ_1c7e965b714e9bb1ed601e6be5ed8d4a2aee94ea"
 
+            // Base64 encode the authentication token
+            String encodedAuthToken = Base64.getEncoder().encodeToString(authToken.getBytes())
+
             def sonarUrl = "${sonarHost}/api/issues/search?componentKeys=${projectKey}&resolved=false"
-            def sonarResponse = new URL(sonarUrl).getText(requestProperties: ['Authorization': "Basic ${authToken.bytes.encodeBase64().toString()}"])
+            def sonarResponse = new URL(sonarUrl).getText(requestProperties: ['Authorization': "Basic ${encodedAuthToken}"])
             def json = new JsonSlurper().parseText(sonarResponse)
 
             // Write data to CSV file
